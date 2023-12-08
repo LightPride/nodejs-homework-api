@@ -74,7 +74,6 @@ const updateById = async (req, res) => {
 const updateStatusContact = async (req, res) => {
   const { favorite } = req.body;
 
-  // console.log(`${favorite}`);
   if (!`${favorite}`) {
     throw HttpError(404, "missing field favorite");
   }
