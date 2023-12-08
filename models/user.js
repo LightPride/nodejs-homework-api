@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+
 const { handleMongooseError } = require("../helpers");
 
 const userSchema = new Schema(
@@ -19,7 +20,7 @@ const userSchema = new Schema(
     },
     token: String,
   },
-  { versionKey: false, timestamps: true },
+  { versionKey: false, timestamps: true }
 );
 
 userSchema.post("save", handleMongooseError);

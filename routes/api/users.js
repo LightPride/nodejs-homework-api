@@ -1,6 +1,6 @@
 const express = require("express");
 
-const ctrl = require("../../controllers/auth");
+const ctrl = require("../../controllers/user");
 
 const { validateBody, authenticate } = require("../../middlewares");
 
@@ -16,10 +16,6 @@ router.post("/logout", authenticate, ctrl.logout);
 
 router.get("/current", authenticate, ctrl.getCurrent);
 
-router.patch(
-  "/:userId/subscription",
-  validateBody(schemas.updateSubscriptionSchema),
-  ctrl.updateUserSubscription,
-);
+router.patch("/:userId/subscription", validateBody(schemas.updateSubscriptionSchema), ctrl.updateUserSubscription);
 
 module.exports = router;
