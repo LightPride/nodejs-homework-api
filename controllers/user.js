@@ -55,7 +55,7 @@ const login = async (req, res) => {
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
   await User.findByIdAndUpdate(user._id, { token });
 
-  res.status(201).json({
+  res.status(200).json({
     token,
     user: {
       email,
@@ -110,7 +110,7 @@ const updateAvatar = async (req, res) => {
     .catch((err) => {
       console.error(err);
     });
-  const avatarURL = path.join("avatars", originalName);
+  const avatarURL = path.join("avatars", filename);
   await User.findByIdAndUpdate(_id, { avatarURL });
   res.json({
     avatarURL,
