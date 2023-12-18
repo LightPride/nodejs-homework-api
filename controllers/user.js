@@ -99,8 +99,11 @@ const updateUserSubscription = async (req, res) => {
 
 const updateAvatar = async (req, res) => {
   const { _id } = req.user;
-  const { path: tempUpload, originalName } = req.file;
-  const filename = `${_id}_${originalName}`;
+  if (!req.file) {
+    throw HttpError(400, "missing avatar file");
+  }
+  const { path: tempUpload, originalname } = req.file;
+  const filename = `${_id}_${originalname}`;
   const resultUpload = path.join(avatarsDir, filename);
   await fs.rename(tempUpload, resultUpload);
   await Jimp.read(resultUpload)
